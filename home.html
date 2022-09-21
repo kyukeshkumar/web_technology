@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="home.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+</head>
+<body>
+    <div class="main">
+    <nav class="header">
+        <p>University Sugge<span class="span1">z</span>tor</p>
+        <div class="row">
+        <a>Home</a>
+        <a>About</a>
+        <a>Contact Us</a>
+    </div>
+    </nav>
+        <img src="" alt="img" >
+        <div class="para">
+            <h1>Want a customized set of Universities? We got you.</h1>
+            <br>
+            <br>
+            <p>Lately, I've been noticing how my sentences have a tendency to keep going when I write them onscreen.
+            This goes for concentrated writing as well as correspondence. (Twain probably believed that 
+            correspondence, in an ideal world, also demands concentration. But he never used email.)
+            Last week I caught myself packing four conjunctions into a three-line sentence in an email.</p>
+            <br>
+            <div class="btn_align">
+                <button class="btn1"><b>GET UNIVERSITY</b></button>
+                <br>
+                <br>
+                <a href="#">Read More</a>
+                <!-- <button class="btn2">Read more</button> -->
+            </div>
+            
+        </div>
+
+        
+</div>
+
+    <div class="content" id="about">
+
+        <div class="form_area">
+            <h1>GET SUGGESTIONS</h1>
+
+            <div class="input_container" ng-app="myapp" ng-controller="mycontrol">
+                <p>Enter Your Marks</p>
+                <form action="http://localhost:3000/home" method="POST">
+                    <!-- <label for="">Jee Mains</label><br> -->
+                    <input type="text" placeholder="Jee Mains" name="mains" ng-model="mains">
+                    &nbsp;
+                    <input type="text" placeholder="Jee Advanced" name="adv" ng-model="adv">
+                    &nbsp;
+                    <input type="text" placeholder="BITSAT" name="bits" ng-model="bits">
+                    &nbsp;
+                    <input type="text" placeholder="VITEEE" ng-model="vit">
+                    &nbsp;
+                    <input type="text" placeholder="MET" ng-model="vit">
+                    &nbsp;
+                    <input type="text" placeholder="SRMET" ng-model="srm">
+                    &nbsp;
+                    <select name="Others" id="cars">
+                        <option value="Amirta">Amirta</option>
+                        <option value="DTU">DTU</option>
+                      </select>
+                      &nbsp;
+                      <br>
+                    <button class="sub-btn" ng-click = "func()">Submit</button>
+                    <br>
+                    <br>
+                    <div class="angular" ng-show = "val" ng-if="mains!=0 && adv!=0 && bits!=0">
+                        <h3 style="align-items: center;">As per our calculation on verifying previous year's data, you should apply colleges 
+                        using your <b>Mains Mark</b>. </h3>
+                        <br>
+                        The Suitable Colleges that you have high chances of getting into are:
+                        <br>
+                        <br>
+                        <div class="clgs" ng-if="mains>adv" ng-show="val">
+                                {{arr[0]}}
+                            <!-- 1. National Institute of Technology, Trichy - Instrumentation Engg, Mechanical Engg, Civil Engg, Chemical Engg. -->
+                            <br>
+                            <br>
+                                {{arr[1]}}
+                            <!-- 2. National Institute of Technology, Suratkal - Chemical Engg, Mechanical Engg, Electronics Engg. -->
+                            <br>
+                            <br>
+                        </div>
+                        <!-- 3. Indian Institute of Information Technology, Hyderabad - Information Technology, BioTech Engg, Electronics and Comm. Engg. -->
+                        <div class="clgs" ng-if="adv>mains" ng-show="val">
+                            {{arr[3]}}
+                            <br><br>
+                            {{arr[4]}}
+                            <br><br>
+                            {{arr[5]}}
+                            <br><br>
+                        </div> 
+                        <div class="clgs" ng-if="bits>mains && bits>adv" ng-show="val">
+                            {{arr[6]}}
+                            <br><br>
+                            {{arr[7]}}
+                            <br><br>
+                            {{arr[8]}}
+                            <br><br>
+                        </div> 
+                    </div>
+                    </div>
+                    
+                </form>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('myapp', [])
+        app.controller('mycontrol', function($scope) {
+            $scope.mains = 0
+            $scope.val = false
+            $scope.adv = 0
+            $scope.bits = 0
+            $scope.vit = 0
+            $scope.srm = 0
+            $scope.func = function(){
+                $scope.val = true
+            }
+            $scope.arr = ['NITT', 'NITS','NITW','IITH','IITP','IITM','BITS PILANI','BITS GOA','BITS HYDERABAD']
+        })
+        </script>
+
+    <div class="contact" id="contact">
+        <div class="contact_para">
+            <br>
+            <h1>CONTACT US</h1><br>
+            <p>Address: 500 Terry Francois St. SF, CA 94158</p><br>
+            <p>Email: info@mysite.com</p><br>
+            <p>Tel: 123-456-7890</p><br>
+        </div>
+
+        <div class="contact_form">
+            <p>You can also contact us by using this form:</p><br>
+            <form action="" class="form1">
+                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="Last Name"><br>
+                <input type="text" placeholder="Email">
+                <input type="text" placeholder="Subject"><br>
+                <textarea name="text" id="" cols="52" rows="7" placeholder="Leave us a message here!"></textarea><br><br><br>
+                <input type="submit" placeholder="Submit"><br><br>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2023 by University Suggeztor</p>
+    </footer>
+
+</body>
+</html>
